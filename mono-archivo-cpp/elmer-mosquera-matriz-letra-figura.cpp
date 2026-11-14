@@ -215,7 +215,7 @@ int menu_de_operaciones(Contexto contexto) {
 		print("\n8.            {} NUMEROS ENTRE 12 Y 16 EN EL AREA SOMBREADA DE LA MATRIZ DE FIGURA",figura_rango);
 	}
 
-	print("\n0.                                                 SALIR");
+	print("\n0.                                              SALIR");
 
 	int opcion{};
 
@@ -339,6 +339,22 @@ void salida_ejercicio(const Contexto& contexto, const Matrices &matrices) {
 		}
 	};
 
+	if (contexto.mostrar_matriz_letra) {
+		print("\t   MATRIZ LETRA");
+		if (!contexto.mostrar_matriz_figura) {
+			print("\n");
+		}
+	}
+
+	if(contexto.mostrar_matriz_letra && contexto.mostrar_matriz_figura) {
+		print("\t\t\t\t\t");
+	}
+
+	if (contexto.mostrar_matriz_figura) {
+		println("\t   MATRIZ FIGURA");
+	}
+
+
 	for (i=0; i<5; i++) {
 
 		if (contexto.mostrar_matriz_letra) {
@@ -356,21 +372,24 @@ void salida_ejercicio(const Contexto& contexto, const Matrices &matrices) {
 		cout << endl;
 	}
 
-	if (contexto.mostrar_matriz_letra && contexto.mt_letra_llena && contexto.mostrar_sw_letra && contexto.mostrar_primos_mt_letra) {
+	bool mostrar_cant_primos{contexto.mostrar_matriz_letra && contexto.mt_letra_llena && contexto.mostrar_sw_letra && contexto.mostrar_primos_mt_letra};
+	bool mostrar_n_rango{contexto.mostrar_matriz_figura && contexto.mt_figura_llena && contexto.mostrar_sw_figura && contexto.mostrar_rango_mt_figura};
+	bool mostrar_ambos{mostrar_cant_primos && mostrar_n_rango};
+
+	if (mostrar_cant_primos) {
 		print("HAY {} NUMEROS PRIMOS EN EL EL", cant_n_primos_mt_letra);
 	}
 
-	if (contexto.mostrar_matriz_figura && contexto.mt_figura_llena && contexto.mostrar_sw_figura && contexto.mostrar_rango_mt_figura) {
+	if (mostrar_n_rango) {
 
-		if((contexto.mostrar_matriz_letra && contexto.mt_letra_llena && contexto.mostrar_sw_letra && contexto.mostrar_primos_mt_letra) &&
-		        (contexto.mostrar_matriz_figura && contexto.mt_figura_llena && contexto.mostrar_sw_figura && contexto.mostrar_rango_mt_figura)) {
+		if(mostrar_ambos) {
 			print("\t\t\t\t");
 		} else if (contexto.mostrar_matriz_letra) {
 			print("\t\t\t\t\t\t\t");
 		}
 
 
-		if (cant_n_en_rango_mt_figura > 2) {
+		if (cant_n_en_rango_mt_figura >= 2) {
 			hay_dos_n_en_rango_mt_figura = true;
 		}
 		if (hay_dos_n_en_rango_mt_figura) {
@@ -380,14 +399,13 @@ void salida_ejercicio(const Contexto& contexto, const Matrices &matrices) {
 		}
 	}
 
-	if (contexto.mostrar_matriz_letra && contexto.mt_letra_llena && contexto.mostrar_sw_letra && contexto.mostrar_primos_mt_letra) {
+	if (mostrar_cant_primos) {
 		print("\nAREA SOMBREADA DE LA MATRIZ LETRA");
 	}
 
-	if (contexto.mostrar_matriz_figura && contexto.mt_figura_llena && contexto.mostrar_sw_figura && contexto.mostrar_rango_mt_figura) {
+	if (mostrar_n_rango) {
 
-		if((contexto.mostrar_matriz_letra && contexto.mt_letra_llena && contexto.mostrar_sw_letra && contexto.mostrar_primos_mt_letra) &&
-		        (contexto.mostrar_matriz_figura && contexto.mt_figura_llena && contexto.mostrar_sw_figura && contexto.mostrar_rango_mt_figura)) {
+		if(mostrar_ambos) {
 			print("\t\t\t");
 		} else if (contexto.mostrar_matriz_letra) {
 			print("\n\t\t\t\t\t\t\t");
