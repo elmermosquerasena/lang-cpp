@@ -148,7 +148,7 @@ void llenar_matriz_letra(Matrices &matrices) {
 void llenar_matriz_figura(Matrices &matrices) {
 	for (int i=0; i<5; i++) {
 		for (int j=0; j<5; j++) {
-			matrices.matriz_figura[i][j] = aleatorio::entero(10,20);
+			matrices.matriz_figura[i][j] = aleatorio::entero(1,100);
 		}
 	}
 };
@@ -208,12 +208,14 @@ int menu_de_operaciones(Contexto contexto) {
 	}
 
 	if (contexto.mostrar_matriz_letra && contexto.mt_letra_llena && contexto.mostrar_sw_letra) {
-		print("\n7.       {} NUMEROS PRIMOS EN EL AREA SOMBREADA DE LA MATRIZ DE LETRA",letra_primos);
+		print("\n7.            {} NUMEROS PRIMOS EN EL AREA SOMBREADA DE LA MATRIZ DE LETRA",letra_primos);
 	}
 
 	if (contexto.mostrar_matriz_figura && contexto.mt_figura_llena && contexto.mostrar_sw_figura) {
-		print("\n8.       {} NUMEROS ENTRE 12 Y 16 EN EL AREA SOMBREADA DE LA MATRIZ DE FIGURA",figura_rango);
+		print("\n8.            {} NUMEROS ENTRE 12 Y 16 EN EL AREA SOMBREADA DE LA MATRIZ DE FIGURA",figura_rango);
 	}
+
+	print("\n0.                                                 SALIR");
 
 	int opcion{};
 
